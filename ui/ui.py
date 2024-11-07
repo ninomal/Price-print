@@ -50,14 +50,14 @@ class Ui():
                                                    
     def buttonPainel(self):
         buttonConfigs = tk.Button(self.anchorPane, text="Configs", font=("Helvetica", 18),
-                               bg="#A580CA", command= self.popADD)
+                               bg="#A580CA", command= self.tableConfigs)
         buttonConfigs.place(x=248, y= 5, width=149)
         buttonAdd = tk.Button(self.anchorPane, text="Add User", font=("Helvetica", 18),
-                               bg="#A580CA", command= self.popADD)
+                               bg="#A580CA", command= self.tableAddUser)
         buttonAdd.place(x=248, y= 57, width=149)
 
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
-                               bg="#A580CA", command= self.popADD)
+                               bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
 
     def popADD(self):
@@ -98,6 +98,15 @@ class Ui():
     def clearLIstEntrys(self):
         self.listData = []
   
+    
+    def tableConfigs(self):
+        pass
+
+    def tableEnter(self):
+        pass
+   
+    def tableAddUser(self):
+        pass
     
     def ioMainLoop(self):
         self.windows.mainloop()
