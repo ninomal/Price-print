@@ -12,7 +12,7 @@ import random
 class Ui():
     def __init__(self):
         self.windows = Tk()
-        self.windows.geometry("850x420")
+        self.windows.geometry("845x430")
         self.windows.title("3D PRICE")
         self.windows.config(background="#080121")
         self.caminhoEntry = ''
@@ -29,37 +29,36 @@ class Ui():
     def firma(self):
         label_footer = tk.Label(self.windows, text="Radical dreamers aw rpg ltda", 
                         font=("Helvetica", 17), fg="#1b52a4", bg="#080121")
-        label_footer.place(x=1, y=10, width=349, height=45)
+        label_footer.place(x=1, y=4, width=349, height=45)
            
     def frame1(self):
-        self.anchorPane = tk.Frame(self.windows, width=400, height=276,
+        self.anchorPane = tk.Frame(self.windows, width=400, height=160,
                                    background="#4A1985")
-        self.anchorPane.place(x=15, y=135) 
+        self.anchorPane.place(x=15, y=260) 
         
     def canvasImage(self): 
-        image_frame = Canvas(self.windows, width=406, height=400, background="#080121")
-        image_frame.place(x=430, y=8)
+        image_frame = Canvas(self.windows, width=400, height=400, background="#080121")
+        image_frame.place(x=430, y=16)
         self.logo_img = PhotoImage(file= self.randomImagem())
-        image_frame.create_image(100, 100, image = self.logo_img)
+        image_frame.create_image(200, 200, image = self.logo_img)
         
     def randomImagem(self):
         rng = random.Random()
-        randInt = rng.randint(1, 5)
-        path = Path(fr"ui\image\ess{randInt}.png")
-        print(path)
+        randInt = rng.randint(1, 2)
+        path = Path(fr'ui\image\ess{randInt}.png')
         return path
                                                    
     def buttonPainel(self):
         buttonConfigs = tk.Button(self.anchorPane, text="Configs", font=("Helvetica", 18),
                                bg="#A580CA", command= self.popADD)
-        buttonConfigs.place(x=248, y= 124, width=149)
+        buttonConfigs.place(x=248, y= 5, width=149)
         buttonAdd = tk.Button(self.anchorPane, text="Add User", font=("Helvetica", 18),
                                bg="#A580CA", command= self.popADD)
-        buttonAdd.place(x=248, y= 174, width=149)
+        buttonAdd.place(x=248, y= 57, width=149)
 
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.popADD)
-        buttonEnter.place(x=248, y= 224, width=149)
+        buttonEnter.place(x=248, y= 110, width=149)
 
     def popADD(self):
         pass
