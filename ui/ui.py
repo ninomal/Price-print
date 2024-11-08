@@ -9,6 +9,7 @@ from pathlib import Path
 import random
 
 
+
 class Ui():
     def __init__(self):
         self.windows = Tk()
@@ -24,6 +25,7 @@ class Ui():
         self.buttonPainel()
         self.clearLIstEntrys()
         self.ioMainLoop()
+        
 
         
     def firma(self):
@@ -59,6 +61,14 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
+        self.listOfComboInfo = ['Printer']
+        self.comboTabelas = ttk.Combobox(self.anchorPane, 
+                                            values= self.listOfComboInfo,
+                                            font=("Helvetica", 14),
+                                             state='normal')
+        self.comboTabelas.place(x=15, y=15, width=150, height=25)
+        self.comboTabelas.set(self.listOfComboInfo[0])  
+
 
     def popADD(self):
         pass
@@ -68,7 +78,7 @@ class Ui():
         masterPoP.geometry("500x300")
         masterPoP.config(bg="#A580CA")
         messagebox = tk.Label(master= masterPoP,
-                              text= "Valor invalido",
+                              text= "Value error",
                               font=("Helvetica", 27))
         messagebox.pack(padx= 40, pady= 40)   
         self.listData = []
@@ -77,22 +87,15 @@ class Ui():
     def popEraserError(self):
         messagebox.showwarning(title="Erro",
                 message= "Error para Adicionar")
-    
-    def popPathError(self):
-        messagebox.showwarning(title="Erro",
-                message= "Erro de caminho")
-        
-    def popTabelaExist(self):
-        messagebox.showwarning(title="Erro",
-                message= "Tabela existe utilize outro nome")
+
     
     def popTabelaNoExist(self):
-        messagebox.showwarning(title="Erro",
-                message= "Nome da Tabela Não encontrada ")
+        messagebox.showwarning(title="Error",
+                message= "Not exist")
         
     def popDataADD(self):
-        messagebox.showwarning(title="Adicionada",
-                message= "Os dados foram adicionados")
+        messagebox.showwarning(title="Created",
+                message= "object created")
      
                                
     def clearLIstEntrys(self):
@@ -103,7 +106,10 @@ class Ui():
         pass
 
     def tableEnter(self):
-        pass
+        enterPane = tk.Frame(self.windows, width=400, height=402,
+                                   background="#4A1985")
+        enterPane.place(x=15, y=15) 
+        nameOfPrinter = self.products.readJson(self.comboTabelas, self.popValueError())
    
     def tableAddUser(self):
         pass
