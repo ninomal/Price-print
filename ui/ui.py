@@ -28,8 +28,7 @@ class Ui():
                                    background="#4A1985")
         self.ioMainLoop()
         
-
-        
+    
     def firma(self):
         label_footer = tk.Label(self.windows, text="Radical dreamers aw rpg ltda", 
                         font=("Helvetica", 17), fg="#1b52a4", bg="#080121")
@@ -63,14 +62,13 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = ['Printer']
+        self.listOfComboInfo = ['Printer']#READ JSON AND CONVERT HEREEE
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
                                              state='normal')
         self.comboTabelas.place(x=15, y=15, width=150, height=25)
         self.comboTabelas.set(self.listOfComboInfo[0])  
-
 
     def popADD(self):
         pass
@@ -102,24 +100,66 @@ class Ui():
                                
     def clearLIstEntrys(self):
         self.listData = []
-  
-    
+   
     def tableConfigs(self):
         pass
 
-    def tableEnter(self):
+    def destroy_label(self, labelPane):
+        labelPane.destroy()
+
+    def tableAddUser(self):
+        addPane = tk.Frame(self.windows, width=400, height=402,
+                                   background="#4A1985")
+        addPane.place(x=15, y=15) 
+        labelPrinte = tk.Label(master=addPane, text='Add new Printer',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelPrinte.place(x= 90, y= 10)
+
+        labelPrinter = tk.Label(master=addPane, text='Printer name:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelPrinter.place(x= 1, y= 110)
+        entryPrinter = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
+        entryPrinter.place(x=188, y =115)
+    
+        labelWatt = tk.Label(master=addPane, text='Watt hour consumption:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelWatt.place(x= 1, y= 180)
+        entryWatt = tk.Entry(master= addPane, width= 6, font=("Helvetica", 18))
+        entryWatt.place(x=310, y =185)
+
+        labelFilament = tk.Label(master=addPane, text='Filament cost:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelFilament.place(x= 1, y= 255)
+        entryFilament = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
+        entryFilament.place(x=188, y =260)
+
+        buttonCreate= tk.Button(master = addPane, text="Create", font=("Helvetica", 18),
+                               bg="#A580CA", command= self.getCalc)
+        buttonCreate.place(x=235, y= 346, width=149)
+
+        buttonCreate= tk.Button(master = addPane, text="Back", font=("Helvetica", 18),
+                               bg="#A580CA", command= lambda: self.destroy_label(addPane))
+        buttonCreate.place(x=10, y= 346, width=146)
+
         
+    def tableEnter(self):
         self.enterPane.place(x=15, y=15) 
         nameOfPrinter = 'Flashforge Adventure 5m Pro' #self.products.readJson(self.comboTabelas, self.popValueError())
         labelPrinte = tk.Label(master=self.enterPane, text=f'Printer:\n {nameOfPrinter}',
                                 background="#4A1985", font=("Helvetica", 20))
         labelPrinte.place(x= 5, y= 10)
 
-        labelHours = tk.Label(master=self.enterPane, text='Hours/minuts:',
+        labelHours = tk.Label(master=self.enterPane, text='Hours:',
                                 background="#4A1985", font=("Helvetica", 20))
         labelHours.place(x= 1, y= 110)
-        entryHours = tk.Entry(master= self.enterPane, width= 15, font=("Helvetica", 18))
-        entryHours.place(x=185, y =115)
+        entryHours = tk.Entry(master= self.enterPane, width= 6, font=("Helvetica", 18))
+        entryHours.place(x=102, y =115)
+
+        labelMinuts = tk.Label(master=self.enterPane, text='Minuts:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelMinuts.place(x= 200, y= 110)
+        entryMinuts = tk.Entry(master= self.enterPane, width= 6, font=("Helvetica", 18))
+        entryMinuts.place(x=302, y =115)
     
         labelweight = tk.Label(master=self.enterPane, text='Weight grams:',
                                 background="#4A1985", font=("Helvetica", 20))
@@ -146,9 +186,6 @@ class Ui():
         labelResult= tk.Label(master=self.enterPane, text= text,
                                 background="#4A1985", font=("Helvetica", 20))
         labelResult.place(x=80, y= 350)
-
-    def tableAddUser(self):
-        pass
     
     def ioMainLoop(self):
         self.windows.mainloop()
