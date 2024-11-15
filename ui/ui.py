@@ -104,6 +104,10 @@ class Ui():
     def destroy_label(self, labelPane):
         labelPane.destroy()
 
+    def createUserJson(self, printerName, watts, filaType, priceFila):
+        userDict = {printerName: {'watts': watts, 'filaType':filaType,
+                   'priceFila': priceFila }}
+        self.products.createUser(printerName, userDict)
    
     def tableConfigs(self):
         configsPane = tk.Frame(self.windows, width=400, height=402,
@@ -144,31 +148,39 @@ class Ui():
 
         labelPrinter = tk.Label(master=addPane, text='Printer name:',
                                 background="#4A1985", font=("Helvetica", 20))
-        labelPrinter.place(x= 1, y= 110)
+        labelPrinter.place(x= 1, y= 100)
         entryPrinter = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
-        entryPrinter.place(x=188, y =115)
+        entryPrinter.place(x=188, y =105)
     
         labelWatt = tk.Label(master=addPane, text='Watt hour consumption:',
                                 background="#4A1985", font=("Helvetica", 20))
-        labelWatt.place(x= 1, y= 180)
+        labelWatt.place(x= 1, y= 165)
         entryWatt = tk.Entry(master= addPane, width= 6, font=("Helvetica", 18))
-        entryWatt.place(x=310, y =185)
+        entryWatt.place(x=310, y =170)
+
+        labelFilamentName = tk.Label(master=addPane, text='Filament name',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelFilamentName.place(x= 1, y= 225)
+        entryFilamentName = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
+        entryFilamentName.place(x=188, y =230)
 
         labelFilament = tk.Label(master=addPane, text='Filament cost:',
                                 background="#4A1985", font=("Helvetica", 20))
-        labelFilament.place(x= 1, y= 255)
+        labelFilament.place(x= 1, y= 275)
         entryFilament = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
-        entryFilament.place(x=188, y =260)
+        entryFilament.place(x=188, y =280)
 
         buttonCreate= tk.Button(master = addPane, text="Create", font=("Helvetica", 18),
-                               bg="#A580CA", command= self.getCalc)
+                            bg="#A580CA", command= lambda: self.createUserJson(
+                               entryPrinter.get(), entryWatt.get(), entryFilamentName.get(),
+                               entryFilament.get()      
+                            ))
         buttonCreate.place(x=235, y= 346, width=149)
 
         buttonCreate= tk.Button(master = addPane, text="Back", font=("Helvetica", 18),
                                bg="#A580CA", command= lambda: self.destroy_label(addPane))
         buttonCreate.place(x=10, y= 346, width=146)
-
-        
+       
     def tableEnter(self):
         self.enterPane.place(x=15, y=15) 
         nameOfPrinter = 'Flashforge Adventure 5m Pro' #self.products.readJson(self.comboTabelas, self.popValueError())
@@ -200,6 +212,10 @@ class Ui():
         entryPrice = tk.Entry(master= self.enterPane, width= 15, font=("Helvetica", 18))
         entryPrice.place(x=185, y =255)
 
+        labelNameFila = tk.Label(master=self.enterPane, text='Filment Name:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelNameFila.place(x= 1, y= 300)
+
         labelPrice = tk.Label(master=self.enterPane, text='Value:',
                                 background="#4A1985", font=("Helvetica", 20))
         labelPrice.place(x= 1, y= 350)
@@ -208,9 +224,14 @@ class Ui():
                                bg="#A580CA", command= self.getCalc)
         buttonEnter.place(x=235, y= 346, width=149)
 
-    def getCalc(self):
-        text = self.products.getLabelResult()
-        labelResult= tk.Label(master=self.enterPane, text= text,
+    def getCalc(self):    
+        nameFilament = self.products.getLabelNameFila()
+        labelNameFila = tk.Label(master=self.enterPane, text= nameFilament,
+                                background="#4A1985", font=("Helvetica", 20))
+        labelNameFila.place(x= 185, y= 300)
+
+        result = self.products.getLabelResult()
+        labelResult= tk.Label(master=self.enterPane, text= result,
                                 background="#4A1985", font=("Helvetica", 20))
         labelResult.place(x=80, y= 350)
     

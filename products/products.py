@@ -5,15 +5,14 @@ class Products():
        self.productsService = ProductsService
        self.result = 'TEST'
 
-
     def readJson(self, fileName):
         return self.productsService.readJson(fileName)
     
-    def writeJson(self, filename, data, popMethod, popValueError):
-        return self.productsService.writeJson(filename, data, popMethod, popValueError)
+    def writeJson(self, filename, data):
+        return self.productsService.writeJson(filename, data)
     
-    def upDateJson(self, filename, update, popMethod, popValueError):
-        return self.productsService.updateJson(filename, update, popMethod, popValueError)
+    def upDateJson(self, filename, update):
+        return self.productsService.updateJson(filename, update)
              
     def calcProfit(self, fileName, mYthrow):
         self.readJson(self, fileName)
@@ -22,3 +21,8 @@ class Products():
     def getLabelResult(self):
         return self.result
 
+    def getLabelNameFila(self):
+        return 'ABS'
+
+    def createUser(self, printerName, dictUser):
+        self.writeJson(printerName, dictUser)
