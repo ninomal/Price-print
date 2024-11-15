@@ -100,13 +100,40 @@ class Ui():
                                
     def clearLIstEntrys(self):
         self.listData = []
-   
-    def tableConfigs(self):
-        pass
 
     def destroy_label(self, labelPane):
         labelPane.destroy()
 
+   
+    def tableConfigs(self):
+        configsPane = tk.Frame(self.windows, width=400, height=402,
+                                   background="#4A1985")
+        configsPane.place(x=15, y=15) 
+        labelConfigs = tk.Label(master=configsPane, text='Configs',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelConfigs.place(x= 90, y= 10)
+
+        labelConfigs = tk.Label(master=configsPane, text='Select languagem:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelConfigs.place(x= 1, y= 75)
+
+        self.listOfComboInfo = ['English'] # need ad list of languagem
+        self.comboTabelas = ttk.Combobox(configsPane, 
+                                            values= self.listOfComboInfo,
+                                            font=("Helvetica", 15),
+                                             state='normal')
+        self.comboTabelas.place(x= 66, y=127, width=160, height=28)
+        self.comboTabelas.set(self.listOfComboInfo[0])  
+
+        buttonCreate= tk.Button(master = configsPane, text="Save", font=("Helvetica", 18),
+                               bg="#A580CA", command= self.getCalc)
+        buttonCreate.place(x=235, y= 346, width=149)
+
+        buttonCreate= tk.Button(master = configsPane, text="Back", font=("Helvetica", 18),
+                               bg="#A580CA", command= lambda: self.destroy_label(configsPane))
+        buttonCreate.place(x=10, y= 346, width=146)
+
+    
     def tableAddUser(self):
         addPane = tk.Frame(self.windows, width=400, height=402,
                                    background="#4A1985")
