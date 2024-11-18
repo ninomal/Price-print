@@ -1,15 +1,16 @@
 from productsService.productsSerivce import ProductsService
-
+import json
 class Products():
     def __init__(self):
-       self.productsService = ProductsService
+       self.productsService = ProductsService()
        self.result = 'TEST'
+
 
     def readJson(self, fileName):
         return self.productsService.readJson(fileName)
     
-    def writeJson(self, filename, data):
-        return self.productsService.writeJson(filename, data)
+    def writeJson(self, filename, data):    
+        self.productsService.writeJson(filename, data)
     
     def upDateJson(self, filename, update):
         return self.productsService.updateJson(filename, update)

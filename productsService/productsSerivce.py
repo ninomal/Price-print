@@ -17,6 +17,8 @@ class ProductsService:
             print(f"An error occurred: {e}")
 
     def writeJson(self, filename, data):
+        print(filename, data)
+        print(3)
         try:
             with open(filename, 'w') as file:
                 json.dump(data, file, indent=4)

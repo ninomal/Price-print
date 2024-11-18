@@ -62,7 +62,7 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = ['Printer']#READ JSON AND CONVERT HEREEE
+        self.listOfComboInfo = [self.products.readJson('FLASHFORJE ADEVENTURE 5M PRO')]# need fix
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
@@ -105,9 +105,10 @@ class Ui():
         labelPane.destroy()
 
     def createUserJson(self, printerName, watts, filaType, priceFila):
-        userDict = {printerName: {'watts': watts, 'filaType':filaType,
-                   'priceFila': priceFila }}
-        self.products.createUser(printerName, userDict)
+        data = {'printerName': printerName, 'watts': watts, 'filaType':filaType,
+                   'priceFila': priceFila }
+        nameFile = printerName
+        self.products.createUser(nameFile, data)
    
     def tableConfigs(self):
         configsPane = tk.Frame(self.windows, width=400, height=402,
@@ -158,7 +159,7 @@ class Ui():
         entryWatt = tk.Entry(master= addPane, width= 6, font=("Helvetica", 18))
         entryWatt.place(x=310, y =170)
 
-        labelFilamentName = tk.Label(master=addPane, text='Filament name',
+        labelFilamentName = tk.Label(master=addPane, text='Filament type',
                                 background="#4A1985", font=("Helvetica", 20))
         labelFilamentName.place(x= 1, y= 225)
         entryFilamentName = tk.Entry(master= addPane, width= 15, font=("Helvetica", 18))
@@ -212,7 +213,7 @@ class Ui():
         entryPrice = tk.Entry(master= self.enterPane, width= 15, font=("Helvetica", 18))
         entryPrice.place(x=185, y =255)
 
-        labelNameFila = tk.Label(master=self.enterPane, text='Filment Name:',
+        labelNameFila = tk.Label(master=self.enterPane, text='Filment Type:',
                                 background="#4A1985", font=("Helvetica", 20))
         labelNameFila.place(x= 1, y= 300)
 
