@@ -5,7 +5,6 @@ class Products():
        self.productsService = ProductsService()
        self.result = 'TEST'
 
-
     def readJson(self, fileName):
         return self.productsService.readJson(fileName)
     
@@ -22,8 +21,10 @@ class Products():
     def getLabelResult(self):
         return self.result
 
-    def getLabelNameFila(self):
-        return 'ABS'
+    def getLabelNameFila(self, nameJson):
+        dictData =  self.readJson(nameJson)
+        print(dictData)
+        return dictData['printerName']
 
     def createUser(self, printerName, dictUser):
         self.writeJson(printerName, dictUser)

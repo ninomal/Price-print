@@ -1,4 +1,5 @@
 import json
+import os
 
 class ProductsService:
     def __init__(self):
@@ -17,8 +18,6 @@ class ProductsService:
             print(f"An error occurred: {e}")
 
     def writeJson(self, filename, data):
-        print(filename, data)
-        print(3)
         try:
             with open(filename, 'w') as file:
                 json.dump(data, file, indent=4)
@@ -46,3 +45,12 @@ class ProductsService:
             print(f"Error: The file '{filename}' is not valid JSON or is corrupted.")
         except Exception as e:
             print(f"An error occurred while updating the file: {e}")
+
+    def checkFileExist(file_path):
+        # Check if the file exists
+        if os.path.exists(file_path):
+            # If the file exists, return a JSON response (True or some info)
+            return json.dumps({"file_exists": True, "message": "File exists."})
+        else:
+            # If the file does not exist, return a JSON response (False)
+            return json.dumps({"file_exists": False, "message": "File does not exist."})
