@@ -4,8 +4,7 @@ from products.products import Products
 def main():
     #io = Ui()
     products = Products()
-    for exist in range(fileFromjson):
-        "price print\PRINTER0"
+    products.checkIndexName()
     
 
 

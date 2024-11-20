@@ -46,11 +46,7 @@ class ProductsService:
         except Exception as e:
             print(f"An error occurred while updating the file: {e}")
 
-    def checkFileExist(file_path):
-        # Check if the file exists
-        if os.path.exists(file_path):
-            # If the file exists, return a JSON response (True or some info)
-            return json.dumps({"file_exists": True, "message": "File exists."})
-        else:
-            # If the file does not exist, return a JSON response (False)
-            return json.dumps({"file_exists": False, "message": "File does not exist."})
+     # Check if the file exists
+    def checkFileExist(self, file_path):      
+        return os.path.exists(file_path)
+          

@@ -1,9 +1,14 @@
 from productsService.productsSerivce import ProductsService
 import json
+
+PRINTERNAMEINDEX = 'PRINTER'
+
 class Products():
     def __init__(self):
        self.productsService = ProductsService()
        self.result = 'TEST'
+       self.id = 0
+       self.conts = 15
 
     def readJson(self, fileName):
         return self.productsService.readJson(fileName)
@@ -23,8 +28,22 @@ class Products():
 
     def getLabelNameFila(self, nameJson):
         dictData =  self.readJson(nameJson)
-        print(dictData)
         return dictData['printerName']
 
     def createUser(self, printerName, dictUser):
         self.writeJson(printerName, dictUser)
+
+    def checkExist(self, path):
+        return self.productsService.checkFileExist(path)
+        
+    def getID(self, nameJson):
+        dictData =  self.readJson(nameJson)
+        return dictData['ID']
+
+    def checkIndexName(self):
+        for index in range(self.conts):
+            if index > self.conts:
+                self.conts += 10
+            elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f'{index}'):
+                print(self.getID(PRINTERNAMEINDEX + f'{index}'))
+            
