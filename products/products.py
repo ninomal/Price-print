@@ -13,11 +13,11 @@ class Products():
     def readJson(self, fileName):
         return self.productsService.readJson(fileName)
     
-    def writeJson(self, filename, data):    
-        self.productsService.writeJson(filename, data)
+    def writeJson(self, fileName, data):     
+        self.productsService.writeJson(fileName, data)
     
     def upDateJson(self, filename, update):
-        return self.productsService.updateJson(filename, update)
+        self.productsService.updateJson(filename, update)
              
     def calcProfit(self, fileName, mYthrow):
         self.readJson(self, fileName)
@@ -26,12 +26,16 @@ class Products():
     def getLabelResult(self):
         return self.result
 
-    def getLabelNameFila(self, nameJson):
+    def getNamePrinter(self, nameJson):
         dictData =  self.readJson(nameJson)
         return dictData['printerName']
 
-    def createUser(self, printerName, dictUser):
-        self.writeJson(printerName, dictUser)
+    def createUser(self,  data):
+        id = (self.getPrinterID() + 1)
+        data.update({'ID': id}) 
+        printerName = PRINTERNAMEINDEX + f'{id}'
+        print(printerName, id)
+        #self.writeJson(printerName, data)
 
     def checkExist(self, path):
         return self.productsService.checkFileExist(path)
@@ -45,5 +49,14 @@ class Products():
             if index > self.conts:
                 self.conts += 10
             elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f'{index}'):
-                print(self.getID(PRINTERNAMEINDEX + f'{index}'))
+                return self.getID(PRINTERNAMEINDEX + f'{index}')
             
+    def getListPrintsNames(self):
+        listNames = []
+        for row in range(self.checkIndexName()):
+            nameJson = PRINTERNAMEINDEX + f'{row}'
+            listNames.append(self.getNamePrinter(nameJson)) 
+        return listNames
+    
+    def getPrinterID(self):
+        idIndex = self.checkIndexName()

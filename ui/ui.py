@@ -62,7 +62,7 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = [self.products.readJson('FLASHFORJE ADEVENTURE 5M PRO')]# need fix
+        self.listOfComboInfo = ['FLASHFORJE ADEVENTURE 5M PRO']# need fix
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
@@ -107,8 +107,7 @@ class Ui():
     def createUserJson(self, printerName, watts, filaType, priceFila):
         data = {'printerName': printerName, 'watts': watts, 'filaType':filaType,
                    'priceFila': priceFila }
-        nameFile = printerName
-        self.products.createUser(nameFile, data)
+        self.products.createUser(data)
    
     def tableConfigs(self):
         configsPane = tk.Frame(self.windows, width=400, height=402,
