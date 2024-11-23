@@ -62,16 +62,13 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = ['FLASHFORJE ADEVENTURE 5M PRO']# need fix
+        self.listOfComboInfo = "TEST" #self.products.getListPrintsNames()
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
                                              state='normal')
-        self.comboTabelas.place(x=15, y=15, width=150, height=25)
+        self.comboTabelas.place(x=10, y=7, width=220, height=34)
         self.comboTabelas.set(self.listOfComboInfo[0])  
-
-    def popADD(self):
-        pass
 
     def popValueError(self):
         masterPoP = Tk()
@@ -87,7 +84,6 @@ class Ui():
     def popEraserError(self):
         messagebox.showwarning(title="Erro",
                 message= "Error para Adicionar")
-
     
     def popTabelaNoExist(self):
         messagebox.showwarning(title="Error",
@@ -96,8 +92,7 @@ class Ui():
     def popDataADD(self):
         messagebox.showwarning(title="Created",
                 message= "object created")
-     
-                               
+                                   
     def clearLIstEntrys(self):
         self.listData = []
 

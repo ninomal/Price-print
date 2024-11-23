@@ -31,11 +31,15 @@ class Products():
         return dictData['printerName']
 
     def createUser(self,  data):
-        id = (self.getPrinterID() + 1)
-        data.update({'ID': id}) 
-        printerName = PRINTERNAMEINDEX + f'{id}'
+        id = (self.checkIndexName())
+        print(id)
+        id +=1
+        print(id)
+        data.update({'ID': (id)}) 
+        print(data)
+        printerName = PRINTERNAMEINDEX + f'{(id -1)}'
         print(printerName, id)
-        #self.writeJson(printerName, data)
+        self.writeJson(printerName, data)
 
     def checkExist(self, path):
         return self.productsService.checkFileExist(path)
@@ -49,7 +53,9 @@ class Products():
             if index > self.conts:
                 self.conts += 10
             elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f'{index}'):
-                return self.getID(PRINTERNAMEINDEX + f'{index}')
+                print("herree", index)
+                self.id = index
+        return self.id
             
     def getListPrintsNames(self):
         listNames = []
