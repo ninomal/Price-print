@@ -62,7 +62,7 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = "TEST" #self.products.getListPrintsNames()
+        self.listOfComboInfo = self.products.getListPrintsNames()
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
@@ -116,13 +116,13 @@ class Ui():
                                 background="#4A1985", font=("Helvetica", 20))
         labelConfigs.place(x= 1, y= 75)
 
-        self.listOfComboInfo = ['English'] # need ad list of languagem
-        self.comboTabelas = ttk.Combobox(configsPane, 
-                                            values= self.listOfComboInfo,
+        self.languagem = ['English'] # need ad list of languagem
+        self.languagemCombo = ttk.Combobox(configsPane, 
+                                            values= self.languagem,
                                             font=("Helvetica", 15),
                                              state='normal')
-        self.comboTabelas.place(x= 66, y=127, width=160, height=28)
-        self.comboTabelas.set(self.listOfComboInfo[0])  
+        self.languagemCombo.place(x= 66, y=127, width=160, height=28)
+        self.languagemCombo.set(self.listOfComboInfo[0])  
 
         buttonCreate= tk.Button(master = configsPane, text="Save", font=("Helvetica", 18),
                                bg="#A580CA", command= self.getCalc)
@@ -178,10 +178,12 @@ class Ui():
        
     def tableEnter(self):
         self.enterPane.place(x=15, y=15) 
-        nameOfPrinter = 'Flashforge Adventure 5m Pro' #self.products.readJson(self.comboTabelas, self.popValueError())
-        labelPrinte = tk.Label(master=self.enterPane, text=f'Printer:\n {nameOfPrinter}',
+        labelPrinte = tk.Label(master=self.enterPane, text='Printer:',
                                 background="#4A1985", font=("Helvetica", 20))
-        labelPrinte.place(x= 5, y= 10)
+        labelPrinte.place(x= 0, y= 10)
+        labelNamePrinte = tk.Label(master=self.enterPane, text=f'{self.comboTabelas.get()}',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelNamePrinte.place(x= 15, y= 45)
 
         labelHours = tk.Label(master=self.enterPane, text='Hours:',
                                 background="#4A1985", font=("Helvetica", 20))
@@ -220,7 +222,7 @@ class Ui():
         buttonEnter.place(x=235, y= 346, width=149)
 
     def getCalc(self):    
-        nameFilament = self.products.getLabelNameFila()
+        nameFilament = f'{self.comboTabelas}' 
         labelNameFila = tk.Label(master=self.enterPane, text= nameFilament,
                                 background="#4A1985", font=("Helvetica", 20))
         labelNameFila.place(x= 185, y= 300)
