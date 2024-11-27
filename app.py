@@ -5,6 +5,9 @@ def main():
     io = Ui()
     #products = Products()
     #print(products.getListPrintsNames())
+    #print(products.getNamePrinter("PRINTER0.json"))
+    #print(products.checkIndexName())
+ 
     
 
 

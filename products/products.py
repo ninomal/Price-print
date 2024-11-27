@@ -1,7 +1,7 @@
 from productsService.productsSerivce import ProductsService
 import json
 
-PRINTERNAMEINDEX = 'PRINTER'
+PRINTERNAMEINDEX = "PRINTER"
 
 class Products():
     def __init__(self):
@@ -37,8 +37,8 @@ class Products():
         print(id)
         data.update({'ID': (id)}) 
         print(data)
-        printerName = PRINTERNAMEINDEX + f'{(id -1)}'
-        print(printerName, id)
+        printerName = PRINTERNAMEINDEX + f"{(id -1)}" + ".json"
+        print(printerName ,data)
         self.writeJson(printerName, data)
 
     def checkExist(self, path):
@@ -49,18 +49,19 @@ class Products():
         return dictData['ID']
 
     def checkIndexName(self):
+        index = 0
+        print(self.conts)
         for index in range(self.conts):
-            if index > self.conts:
-                self.conts += 10
-            elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f'{index}'):
-                print("herree", index)
+            if index >= (self.conts -1) and self.conts < 20: #need add dynamic for ID
+                self.conts += 9
+            elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f"{(index)}" + ".json"):     
                 self.id = index
         return self.id
             
     def getListPrintsNames(self):
         listNames = []
         for row in range(self.checkIndexName()):
-            nameJson = PRINTERNAMEINDEX + f'{row}'
+            nameJson = PRINTERNAMEINDEX + f"{(row)}" + ".json"
             listNames.append(self.getNamePrinter(nameJson)) 
         return listNames
     
