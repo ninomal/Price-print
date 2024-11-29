@@ -19,6 +19,7 @@ class Ui():
         self.caminhoEntry = ''
         self.conts = 0
         self.products = Products()
+        self.filename = 'user.json'
         self.firma()
         self.canvasImage()
         self.frame1()
@@ -62,7 +63,7 @@ class Ui():
         buttonEnter = tk.Button(self.anchorPane, text="Enter", font=("Helvetica", 18),
                                bg="#A580CA", command= self.tableEnter)
         buttonEnter.place(x=248, y= 110, width=149)
-        self.listOfComboInfo = self.products.getListPrintsNames()
+        self.listOfComboInfo = 'TEST'#self.products.getListPrintsNames()
         self.comboTabelas = ttk.Combobox(self.anchorPane, 
                                             values= self.listOfComboInfo,
                                             font=("Helvetica", 14),
@@ -102,7 +103,11 @@ class Ui():
     def createUserJson(self, printerName, watts, filaType, priceFila):
         data = {'printerName': printerName, 'watts': watts, 'filaType':filaType,
                    'priceFila': priceFila }
-        self.products.createUser(data)
+        if self.products.checkExist(self.filename):
+            dataJson = self.products.readJson(self.filename)
+            dataJson.update(data)
+        else:
+            self.products.createUser(self.filename, data)
    
     def tableConfigs(self):
         configsPane = tk.Frame(self.windows, width=400, height=402,
@@ -213,6 +218,14 @@ class Ui():
                                 background="#4A1985", font=("Helvetica", 20))
         labelNameFila.place(x= 1, y= 300)
 
+        labelNameFila = tk.Label(master=self.enterPane, text='Filment Type:',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelNameFila.place(x= 1, y= 300)
+
+        labelNameFilaText = tk.Label(master=self.enterPane, text=f'{self.products.getLabelNameFila(self.comboTabelas.get())}',
+                                background="#4A1985", font=("Helvetica", 20))
+        labelNameFilaText.place(x=45, y= 300)
+
         labelPrice = tk.Label(master=self.enterPane, text='Value:',
                                 background="#4A1985", font=("Helvetica", 20))
         labelPrice.place(x= 1, y= 350)
@@ -222,7 +235,7 @@ class Ui():
         buttonEnter.place(x=235, y= 346, width=149)
 
     def getCalc(self):    
-        nameFilament = f'{self.comboTabelas}' 
+        nameFilament = f'{self.comboTabelas}' #here
         labelNameFila = tk.Label(master=self.enterPane, text= nameFilament,
                                 background="#4A1985", font=("Helvetica", 20))
         labelNameFila.place(x= 185, y= 300)

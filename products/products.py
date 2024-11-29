@@ -34,12 +34,8 @@ class Products():
         dictData =  self.readJson(nameJson)
         return dictData["filaType"]
 
-    def createUser(self,  data):
-        id = (self.checkIndexName())
-        id +=1
-        data.update({'ID': (id)}) 
-        printerName = PRINTERNAMEINDEX + f"{(id -1)}" + ".json"
-        self.writeJson(printerName, data)
+    def createUser(self, filename,  data):
+        self.writeJson(filename, data)
 
     def checkExist(self, path):
         return self.productsService.checkFileExist(path)
@@ -47,7 +43,7 @@ class Products():
     def getID(self, nameJson):
         dictData =  self.readJson(nameJson)
         return dictData['ID']
-
+    '''
     def checkIndexName(self):
         index = 0
         print(self.conts)
@@ -57,7 +53,7 @@ class Products():
             elif self.productsService.checkFileExist(PRINTERNAMEINDEX + f"{(index)}" + ".json"):     
                 self.id = index + 1
         return self.id
-            
+    '''
     def getListPrintsNames(self):
         listNames = []
         for row in range(self.checkIndexName()):

@@ -3,7 +3,7 @@ from products.products import Products
 
 def main():
     io = Ui()
-    products = Products()
+    #products = Products()
     #print(products.getListPrintsNames())
     #print(products.getNamePrinter("PRINTER0.json"))
 
